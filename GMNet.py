@@ -64,8 +64,8 @@ class GMNet(jt.nn.Module):
         rounded_kpts2 = jt.round(kpts2).long()
 
         if len(feat1_upsample) == 1:
-            node1 = feat1_upsample[0, :, rounded_kpts1[0][0], rounded_kpts1[0][1]].t()
-            node2 = feat2_upsample[0, :, rounded_kpts2[0][0], rounded_kpts2[0][1]].t()
+            node1 = feat1_upsample[0, :, rounded_kpts1[0][1], rounded_kpts1[0][0]].t()
+            node2 = feat2_upsample[0, :, rounded_kpts2[0][1], rounded_kpts2[0][0]].t()
             A1 = A1[0]
             A2 = A2[0]
         else:
@@ -73,8 +73,8 @@ class GMNet(jt.nn.Module):
             node1 = jt.zeros((feat1_upsample.shape[0], N_, feat1_upsample.shape[1]))
             node2 = jt.zeros((feat1_upsample.shape[0], N_, feat1_upsample.shape[1]))
             for i in range(len(node1)):
-                node1[i] = feat1_upsample[i, :, rounded_kpts1[i][0], rounded_kpts1[i][1]].t()
-                node2[i] = feat2_upsample[i, :, rounded_kpts2[i][0], rounded_kpts2[i][1]].t()
+                node1[i] = feat1_upsample[i, :, rounded_kpts1[i][1], rounded_kpts1[i][0]].t()
+                node2[i] = feat2_upsample[i, :, rounded_kpts2[i][1], rounded_kpts2[i][0]].t()
 
         if self.mode == 'pca_gm':
             X = pygm.pca_gm(node1, node2, A1, A2, network=self.gm_net) # the network object is reused
