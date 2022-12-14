@@ -15,3 +15,4 @@ python train.py --batch_size=4 --lr=0.001 --obj_resize=(256,256) --epochs=300
 python eval.py --vggmodel='./model/vgg.pkl' --gmnetmodel='./model/gmnet.pkl' 
 --obj_resize=(256,256) --mode='pca_gm' --type='WillowObject'  --classes='Face'
 ```
+## 点点star帮助作者呜呜
